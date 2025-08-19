@@ -10,7 +10,7 @@ from cleverhans import utils_tf
 from util import cvt2Image, sparse_tuple_from
 from calamari_ocr.ocr.backends.tensorflow_backend.tensorflow_model import TensorflowModel
 from calamari_ocr.ocr import Predictor
-checkpoint = '/home/chenlu/calamari/models/antiqua_modern/4.ckpt.json'
+checkpoint = '/kaggle/input/invi-watermark/4.ckpt.json'
 predictor = Predictor(checkpoint=checkpoint, batch_size=1, processes=10)
 
 network = predictor.network
