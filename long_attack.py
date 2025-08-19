@@ -96,7 +96,7 @@ batch_size = 100
 clip_min, clip_max = 0.0, 1.0
 # load image data
 font_name, case, pert_type, eps, eps_iter, nb_iter = sys.argv[1], sys.argv[2], sys.argv[3], float(sys.argv[4]), float(sys.argv[5]), int(sys.argv[6])
-img_data_path = '/home/chenlu/research/TextRecognitionDataGenerator/word_image_data'
+img_data_path = '/kaggle/input/invi-watermark/img_data/img_data'
 with open(f'{img_data_path}/{font_name}-{case}.pkl', 'rb') as f:
     img_list, input_img, len_x, gt_txt, target_txt = pickle.load(f)
 input_img = np.asarray(input_img)
