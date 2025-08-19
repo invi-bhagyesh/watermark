@@ -73,7 +73,7 @@ with graph.as_default():
 
 # load image data
 font_name, case, pert_type, eps, eps_iter, nb_iter = sys.argv[1], sys.argv[2], sys.argv[3], float(sys.argv[4]), float(sys.argv[5]), int(sys.argv[6])
-img_data_path = '/home/chenlu/research/TextRecognitionDataGenerator/word_image_data'
+img_data_path = '/kaggle/input/invi-watermark/img_data/img_data'
 # img_data_path = '/home/chenlu/research/TextRecognitionDataGenerator/intersect_image_data'
 # img_data_path = '/home/chenlu/research/TextRecognitionDataGenerator/paragraph_image_data/'
 with open(f'{img_data_path}/{font_name}-{case}.pkl', 'rb') as f:
