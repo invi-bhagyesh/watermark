@@ -183,8 +183,7 @@ class WM_Attacker(object):
             erode = cv2.erode(dilate, kernel, iterations=2)  
             remove = morphology.remove_small_objects(erode.astype('bool'), min_size=0)
 
-            # contours, _ = cv2.findContours((remove * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-            remove_uint8 = (os.remove * 255).astype(np.uint8)
+            remove_uint8 = (remove * 255).astype(np.uint8)
 
             # Ensure single channel
             if len(remove_uint8.shape) == 3:  # RGB image
@@ -312,5 +311,3 @@ class WM_Attacker(object):
 
         return self.best_img, self.best_delta, self.best_iter, self.preds, self.suc, ED_num, time_each
 
-
-    
