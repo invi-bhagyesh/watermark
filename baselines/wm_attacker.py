@@ -186,10 +186,9 @@ class WM_Attacker(object):
             remove_uint8 = (remove * 255).astype(np.uint8)
 
             # Ensure single channel
-            if len(remove_uint8.shape) == 3:  # RGB image
-                remove_gray = cv2.cvtColor(remove_uint8, cv2.COLOR_BGR2GRAY)
-            else:
-                remove_gray = remove_uint8
+            remove_gray = remove_uint8
+            if remove_gray.ndim > 2:  # If somehow there are multiple channels
+                remove_gray = remove_gray[:, :, 0]  # take first channel
 
             contours, _ = cv2.findContours(remove_gray, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -310,4 +309,3 @@ class WM_Attacker(object):
         time_each = t_end - t_st
 
         return self.best_img, self.best_delta, self.best_iter, self.preds, self.suc, ED_num, time_each
-
