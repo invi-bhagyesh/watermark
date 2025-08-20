@@ -13,9 +13,9 @@ import torch.backends.cudnn as cudnn
 import torch.utils.data
 from torchvision import utils as vutils
 
-from dataset import test_dataset_builder
+from ..dataset import test_dataset_builder
 from utils import Logger, np2tensor, tensor2np, get_text_mask, cvt2Image, color_map
-from wm_attacker import WM_Attacker
+from .wm_attacker import WM_Attacker
 
 
 def makedirs(path):
