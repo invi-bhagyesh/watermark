@@ -182,7 +182,18 @@ class WM_Attacker(object):
             dilate = cv2.dilate(src, kernel, iterations=2)  
             erode = cv2.erode(dilate, kernel, iterations=2)  
             remove = morphology.remove_small_objects(erode.astype('bool'), min_size=0)
-            contours, _ = cv2.findContours((remove * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+            # contours, _ = cv2.findContours((remove * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+            remove_uint8 = (os.remove * 255).astype(np.uint8)
+
+            # Ensure single channel
+            if len(remove_uint8.shape) == 3:  # RGB image
+                remove_gray = cv2.cvtColor(remove_uint8, cv2.COLOR_BGR2GRAY)
+            else:
+                remove_gray = remove_uint8
+
+            contours, _ = cv2.findContours(remove_gray, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
             wm_pos, frame_img = [], []
             for cont in contours:
                 left_point = cont.min(axis=1).min(axis=0)
