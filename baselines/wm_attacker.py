@@ -185,11 +185,11 @@ class WM_Attacker(object):
 
             remove_uint8 = (remove * 255).astype(np.uint8)
 
-            # Ensure single channel (no cvtColor)
-            if remove_uint8.ndim > 2:  # If somehow multiple channels
-                remove_gray = remove_uint8[:, :, 0]  # Take the first channel
-            else:
-                remove_gray = remove_uint8
+            # Ensure single channel for findContours
+            remove_gray = remove_uint8
+            if remove_gray.ndim > 2:
+                # Collapse any extra channels by taking the mean
+                remove_gray = np.mean(remove_gray, axis=2).astype(np.uint8)
 
             contours, _ = cv2.findContours(remove_gray, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
