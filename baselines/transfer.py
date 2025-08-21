@@ -13,7 +13,7 @@ from nltk.metrics import edit_distance
 
 from .transfer_attacker import transfer_Attacker
 from ..dataset import test_dataset_builder
-from utils import Logger
+from ..utils import Logger
 
 
 def makedirs(path):
