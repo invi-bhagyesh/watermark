@@ -3,7 +3,7 @@ import time
 import torch
 
 from ..utils import CTCLabelConverter, AttnLabelConverter
-from STR_modules.model import Model
+from ..STR_modules.model import Model
 
 r"""
     Base class for transfer-based attack [SI-NI-FGSM, VMI-FGSM], 
