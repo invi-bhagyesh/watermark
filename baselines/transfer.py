@@ -12,7 +12,7 @@ from torchvision import utils as vutils
 from nltk.metrics import edit_distance
 
 from .transfer_attacker import transfer_Attacker
-from dataset import test_dataset_builder
+from ..dataset import test_dataset_builder
 from utils import Logger
 
 
