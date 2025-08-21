@@ -2,7 +2,7 @@ import os
 import time
 import torch
 
-from utils import CTCLabelConverter, AttnLabelConverter
+from ..utils import CTCLabelConverter, AttnLabelConverter
 from STR_modules.model import Model
 
 r"""
