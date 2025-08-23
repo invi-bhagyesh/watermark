@@ -118,7 +118,7 @@ def test(opt):
     opt.test_out = os.path.join(opt.output, opt.name)
     makedirs(opt.test_out)
     # log_file= os.path.join(opt.test_out, 'test.log')
-    # sys.stdout = Logger(log_file)
+    # sys.stdout = Logger(log_file) -
 
     """ model configuration """
     if 'CTC' in opt.Prediction:
