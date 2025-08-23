@@ -36,10 +36,10 @@ def validation(model, criterion, evaluation_loader, converter, opt):
     for i, data in enumerate(evaluation_loader):
         image_tensors, labels = data
         image = image_tensors.to(device)
+        batch_size = image.size(0)  # get real batch size
 
-        # For max length prediction
-        length_for_pred = torch.IntTensor([opt.batch_max_length] * opt.batch_size).to(device)
-        text_for_pred = torch.LongTensor(opt.batch_size, opt.batch_max_length + 1).fill_(0).to(device)
+        length_for_pred = torch.IntTensor([opt.batch_max_length] * batch_size).to(device)
+        text_for_pred = torch.LongTensor(batch_size, opt.batch_max_length + 1).fill_(0).to(device)
 
         text_for_loss, length_for_loss = converter.encode(labels, batch_max_length=opt.batch_max_length)
 
@@ -49,10 +49,9 @@ def validation(model, criterion, evaluation_loader, converter, opt):
             forward_time = time.time() - start_time
 
             # Calculate evaluation loss for CTC deocder.
-            preds_size = torch.IntTensor([preds.size(1)] * opt.batch_size)
+            preds_size = torch.IntTensor([preds.size(1)] * batch_size).to(device)
             # permute 'preds' to use CTCloss format
             cost = criterion(preds.log_softmax(2).permute(1, 0, 2), text_for_loss, preds_size, length_for_loss)
-
             # Select max probabilty (greedy decoding) then decode index to character
             _, preds_index = preds.max(2)
             preds_str = converter.decode(preds_index.data, preds_size.data)
