@@ -37,8 +37,11 @@ class train_dataset_builder(Dataset):
         self.total_img_name = img
         
         for img_name in self.total_img_name:
-            _, label, _ = img_name.split('_')
-            self.dataset.append([img_name, label])
+            file_base = os.path.basename(img_name)
+            parts = file_base.rsplit('_', 2)
+            if len(parts) == 3:
+                _, label, _ = parts
+                self.dataset.append([img_name, label])
 
 
     def __getitem__(self, index):
@@ -170,8 +173,12 @@ class strdataset(Dataset):
         self.total_img_name = img
                 
         for img_name in self.total_img_name:
-            _, label, _ = img_name.split('_')           
-            self.dataset.append([img_name, label])
+            file_base = os.path.basename(img_name)
+            parts = file_base.rsplit('_', 2)
+            if len(parts) == 3:
+                _, label, _ = parts
+                self.dataset.append([img_name, label])
+
 
     def __getitem__(self, index):
         img_name, label = self.dataset[index]
