@@ -5,7 +5,7 @@ import os, sys, time, string, argparse, shutil
 sys.path.append('/data/hyr/ocr/ProTegO/release/')
 import torch
 from nltk.metrics import edit_distance
-from dataset import test_adv_dataset
+from ..dataset import test_adv_dataset
 from STR_modules.model import Model
 from utils import Logger, CTCLabelConverter, AttnLabelConverter
 
