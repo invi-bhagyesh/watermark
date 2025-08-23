@@ -6,8 +6,8 @@ sys.path.append('/data/hyr/ocr/ProTegO/release/')
 import torch
 from nltk.metrics import edit_distance
 from ..dataset import test_adv_dataset
-from STR_modules.model import Model
-from utils import Logger, CTCLabelConverter, AttnLabelConverter
+from ..STR_modules.model import Model
+from ..utils import Logger, CTCLabelConverter, AttnLabelConverter
 
 def makedirs(path):
     if not os.path.exists(path):
